@@ -1,7 +1,6 @@
 package com.bybit;
 
 import com.bybit.merkle.MerkleTree;
-import com.bybit.merkle.generic.Balance;
 import com.bybit.merkle.generic.Balance20;
 import com.bybit.merkle.generic.Balance32;
 import com.bybit.merkle.generic.Balance40;
@@ -10,6 +9,7 @@ import com.bybit.merkle.generic.Balance40V3;
 import com.bybit.merkle.generic.Balance40V4;
 import com.bybit.merkle.generic.Balance40V5;
 import com.bybit.merkle.generic.BalanceMnt20;
+
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 import java.util.Optional;
 
 public class MerkleProofValidator {
-    private final static ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -72,9 +72,11 @@ public class MerkleProofValidator {
     public static boolean validateAsset40V5(String json) {
         boolean success = false;
         try {
-            GenericMerkleTree<Balance40V5> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<Balance40V5>>() {
-            });
-            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+            GenericMerkleTree<Balance40V5> merkleTree =
+                    objectMapper.readValue(
+                            json, new TypeReference<GenericMerkleTree<Balance40V5>>() {});
+            success =
+                    Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
         } catch (IOException e) {
             System.out.println("Fallback to version Asset40V4");
         }
@@ -84,9 +86,11 @@ public class MerkleProofValidator {
     public static boolean validateAsset40V4(String json) {
         boolean success = false;
         try {
-            GenericMerkleTree<Balance40V4> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<Balance40V4>>() {
-            });
-            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+            GenericMerkleTree<Balance40V4> merkleTree =
+                    objectMapper.readValue(
+                            json, new TypeReference<GenericMerkleTree<Balance40V4>>() {});
+            success =
+                    Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
         } catch (IOException e) {
             System.out.println("Fallback to version Asset40V3");
         }
@@ -96,9 +100,11 @@ public class MerkleProofValidator {
     public static boolean validateAsset40V3(String json) {
         boolean success = false;
         try {
-            GenericMerkleTree<Balance40V3> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<Balance40V3>>() {
-            });
-            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+            GenericMerkleTree<Balance40V3> merkleTree =
+                    objectMapper.readValue(
+                            json, new TypeReference<GenericMerkleTree<Balance40V3>>() {});
+            success =
+                    Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
         } catch (IOException e) {
             System.out.println("Fallback to version Asset40V2");
         }
@@ -108,9 +114,11 @@ public class MerkleProofValidator {
     public static boolean validateAsset40V2(String json) {
         boolean success = false;
         try {
-            GenericMerkleTree<Balance40V2> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<Balance40V2>>() {
-            });
-            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+            GenericMerkleTree<Balance40V2> merkleTree =
+                    objectMapper.readValue(
+                            json, new TypeReference<GenericMerkleTree<Balance40V2>>() {});
+            success =
+                    Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
         } catch (IOException e) {
             System.out.println("Fallback to version Asset40");
         }
@@ -120,9 +128,11 @@ public class MerkleProofValidator {
     public static boolean validateAsset40(String json) {
         boolean success = false;
         try {
-            GenericMerkleTree<Balance40> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<Balance40>>() {
-            });
-            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+            GenericMerkleTree<Balance40> merkleTree =
+                    objectMapper.readValue(
+                            json, new TypeReference<GenericMerkleTree<Balance40>>() {});
+            success =
+                    Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
         } catch (IOException e) {
             System.out.println("Fallback to version Asset32");
         }
@@ -132,9 +142,11 @@ public class MerkleProofValidator {
     public static boolean validateAsset32(String json) {
         boolean success = false;
         try {
-            GenericMerkleTree<Balance32> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<Balance32>>() {
-            });
-            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+            GenericMerkleTree<Balance32> merkleTree =
+                    objectMapper.readValue(
+                            json, new TypeReference<GenericMerkleTree<Balance32>>() {});
+            success =
+                    Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
         } catch (IOException e) {
             System.out.println("Fallback to version AssetMnt20");
         }
@@ -144,9 +156,11 @@ public class MerkleProofValidator {
     public static boolean validateMnt20(String json) {
         boolean success = false;
         try {
-            GenericMerkleTree<BalanceMnt20> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<BalanceMnt20>>() {
-            });
-            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+            GenericMerkleTree<BalanceMnt20> merkleTree =
+                    objectMapper.readValue(
+                            json, new TypeReference<GenericMerkleTree<BalanceMnt20>>() {});
+            success =
+                    Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
         } catch (IOException e) {
             System.out.println("Fallback to version Asset20");
         }
@@ -156,9 +170,11 @@ public class MerkleProofValidator {
     public static boolean validate20(String json) {
         boolean success = false;
         try {
-            GenericMerkleTree<Balance20> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<Balance20>>() {
-            });
-            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+            GenericMerkleTree<Balance20> merkleTree =
+                    objectMapper.readValue(
+                            json, new TypeReference<GenericMerkleTree<Balance20>>() {});
+            success =
+                    Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
         } catch (IOException e) {
             System.out.println("Fallback to origin version");
         }
