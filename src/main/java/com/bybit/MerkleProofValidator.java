@@ -1,12 +1,14 @@
 package com.bybit;
 
 import com.bybit.merkle.MerkleTree;
+import com.bybit.merkle.generic.Balance;
 import com.bybit.merkle.generic.Balance20;
 import com.bybit.merkle.generic.Balance32;
 import com.bybit.merkle.generic.Balance40;
 import com.bybit.merkle.generic.Balance40V2;
 import com.bybit.merkle.generic.Balance40V3;
 import com.bybit.merkle.generic.Balance40V4;
+import com.bybit.merkle.generic.Balance40V5;
 import com.bybit.merkle.generic.BalanceMnt20;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,7 +58,8 @@ public class MerkleProofValidator {
     }
 
     public static boolean validation(String json) {
-        return validateAsset40V4(json)
+        return validateAsset40V5(json)
+                || validateAsset40V4(json)
                 || validateAsset40V3(json)
                 || validateAsset40V2(json)
                 || validateAsset40(json)
@@ -64,6 +67,18 @@ public class MerkleProofValidator {
                 || validateMnt20(json)
                 || validate20(json)
                 || validate(json);
+    }
+
+    public static boolean validateAsset40V5(String json) {
+        boolean success = false;
+        try {
+            GenericMerkleTree<Balance40V5> merkleTree = objectMapper.readValue(json, new TypeReference<GenericMerkleTree<Balance40V5>>() {
+            });
+            success = Optional.ofNullable(merkleTree).map(GenericMerkleTree::validate).orElse(false);
+        } catch (IOException e) {
+            System.out.println("Fallback to version Asset40V4");
+        }
+        return success;
     }
 
     public static boolean validateAsset40V4(String json) {

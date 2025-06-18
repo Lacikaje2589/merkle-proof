@@ -19,6 +19,7 @@ public class MerkleProofValidatorTest {
         files.add("mock_user_merkle_tree_path_40_v2.json");
         files.add("mock_user_merkle_tree_path_40_v3.json");
         files.add("mock_user_merkle_tree_path_40_v4.json");
+        files.add("mock_user_merkle_tree_path_40_v5.json");
         files.forEach(file -> {
             System.out.println("Validate file: " + file);
             String json = read(file);
